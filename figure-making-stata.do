@@ -42,7 +42,8 @@ graph bar (percent), over(industry, label(angle(45))) ///
 	ytitle("Percent", size(small)) title("Employment by Industry", size(small) pos(11))	// lets see what else is modifiable below
 
 graph bar (percent), over(industry, label(angle())) /// 
-	bar(1, col(black)) intensity(50) horizontal ///	// specify black bars, opacity of bar color to 50%, horizontal orientation
+	bar(1, color(red)) ///
+	bar(2, color(blue)) intensity(50) horizontal ///	// specify black bars, opacity of bar color to 50%, horizontal orientation
 	ytitle("Percent", size(small)) title("Employment by Industry", size(small) pos(11))
 	
 	
@@ -156,6 +157,7 @@ graph save "$f/open-close-line.gph", replace
 
 graph combine "$f/open-close-line" "$f/scatter.gph" , col(1) note("Note: data from 'sysuse sp500' in Stata", size(vsmall))	// combine the graphs that you saved through your global, one column, add note
 
+graph export "f/combined-plot.jpg", replace
 
 **# Margins plot
 // see: https://medium.com/the-stata-gallery/combined-marginsplots-for-regression-analysis-in-stata-b107b5f237fc
@@ -170,10 +172,13 @@ marginsplot, /// main marginsplot command
 scheme(white_jet) /// change graph scheme
 plotopts(lwidth(medthick) lcolor(black%70) msize(med) mcolor(black%75) mlcolor(black)) /// changes fit line and marker features
 recastci(rarea) ciopts(fcolor(gs15) lcolor(gs15)) /// options for CI area opacity and line colors
-title("{bf}Experience and Hourly Wage", pos(12) size(small)) /// makes title, and spans it across graph (looks nicer)
+title("{bf}Experience and Hourly Wages", pos(12) size(small)) /// makes title, and spans it across graph (looks nicer)
 xsize(6.5) ysize(4.5) /// makes width of graph 6.5 inches, and height of graph 4.5 inches
 xlab(, glcolor(gs15) glpattern(solid)) /// adds solid light gray vertical grid lines
 ylab(, glcolor(gs15) glpattern(solid)) /// adds solid light gray horizontal grid lines
 ytitle(Hourly Wage) /// title of y-axis
 note("Note: Model controls for education, working in the city, usual hours worked, marriage status, and age; n=2242", size(vsmall) span) // adds note; "span" places in left corner //
 
+**# Live example walk through
+
+sysuse lifeexp
