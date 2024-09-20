@@ -1,13 +1,29 @@
 a, a > code {
-  color: rgb(140, 29, 64);
+  color: rgb(255, 198, 39);
   text-decoration: none;
 }
+
+.small-text-content {
+  font-size: 0.8em; /* Adjust to your preferred size */
+  line-height: 1; /* Increases line spacing */
+  margin-bottom: 25px; /* Adds space between references */
+}
+
+
 .footnote {
   position: absolute;
   bottom: 3em;
   padding-right: 4em;
   font-size: 90%;
 }
+
+/* Custom CSS for figure captions in Xaringan */
+.remark-slide-content .caption {
+  font-size: 10px; /* Change this value to adjust caption size */
+  color: #555;     /* Optional: change caption color */
+  text-align: center; /* Optional: center the caption */
+}
+
 .remark-code-line-highlighted     { background-color: #ffff88; }
 
 .inverse {
@@ -73,6 +89,11 @@ th, td { padding: 5px; }
 
 .small { font-size: 50% }
 
+.remark-slide-number {
+  font-size: 0.6em;  /* Adjust this value to change the size */
+  color: #666;       /* Optional: Change the color */
+}
+
 /* CSS to add a repeating footer in the bottom left of each slide */
 .footer {
   position: fixed; /* Fixed positioning to keep it in place */
@@ -86,4 +107,47 @@ th, td { padding: 5px; }
   border-radius: 4px; /* Rounded corners for the background */
   /* Optional styling */
   /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for better visibility */
+}
+
+.img-shadow {
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+  border-radius: 8px; /* Optional: Rounded corners */
+}
+
+.float-left {
+  float: left;
+  width: 45%;
+  margin-right: 10px;
+}
+
+.float-right {
+  float: right;
+  width: 45%;
+  margin-left: 10px;
+}
+
+/* Background image slide with captions */
+.bg-images-with-captions {
+  position: relative;
+  height: 100%;
+}
+
+.caption-left {
+  position: absolute;
+  top: 70%; /* Adjust to control vertical placement */
+  left: 10%;
+  text-align: left;
+  width: 35%;
+  color: #333; /* Text color */
+  font-size: .5em; /* Adjust caption size */
+}
+
+.caption-right {
+  position: absolute;
+  top: 75%; /* Adjust to control vertical placement */
+  right: 10%;
+  text-align: right;
+  width: 35%;
+  color: #333; /* Text color */
+  font-size: .5em; /* Adjust caption size */
 }

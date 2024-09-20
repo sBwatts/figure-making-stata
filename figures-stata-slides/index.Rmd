@@ -3,7 +3,7 @@ title: "SIMD Workshop: Stata Graphics"
 subtitle: ""
 author: "Seth Watts"
 institute: "Arizona State University"
-date: "Sep. 9, 2024"
+date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
     css: [default, ki-fonts, custom-font.css, default.css]
@@ -15,6 +15,7 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       slideNumberFormat: "%current%"
+      
 ---
 class: center, middle, inverse
 background-image: url("asu-logo.png")
@@ -32,6 +33,7 @@ background-size: 8%
 
 <br>
 <br>
+
 .white[September 20, 2024]
 
 ---
@@ -54,14 +56,6 @@ class: top
 --
 
 - Point and click graphics are so 2008 (see Black Eyed Peas, 2009)
-
---
-
-- Repeatability and reproducibility
-
---
-
-    - Isn’t it so fun having to redo a figure you created time and time again, starting from the beginning each time?
     
 --
 
@@ -69,9 +63,9 @@ class: top
 
 ---
 class: top
-background-image: url(repeat-reproduce.jpg)
-background-position: 95% 40%
-background-size: 50%
+background-image: url(efficiency.png)
+background-position: 90% 55%
+background-size: 45%
 
 <div class="footer">
   Arizona State University
@@ -79,23 +73,13 @@ background-size: 50%
 
 # Importance of using code 
 
---
-
 - Repeatability for yourself
-
---
 
 - Reproducibility for others
 
---
-
 - Efficiency
 
---
-
 - Highly flexible
-
---
 
 - Skill development
 
@@ -114,22 +98,64 @@ background-size: 50%
 - Engagement 
 
   - Your audience is likely going to appreciate an effective visual instead of a table – especially policy-makers and practitioners!
+  
+---
+class: bg-images-with-captions
+background-image: url("pickett-1.png"), url("pickett-2.png")
+background-size: 49%, 46%
+background-position: left, right
+# Examples
+
+<div class="caption-left">Haner et al. (2024)</div>
+<div class="caption-right">Haner et al. (2024)</div>
+
+<div class="footer">
+  Arizona State University
+</div>
+
+---
+class: bg-images-with-captions
+background-image: url("pickett-3.png"), url("pickett-4.png")
+background-size: 46%, 49%
+background-position: left, right
+# Examples
+
+<div style="position: absolute; top: 71%; left: 10%; width: 35%; text-align: left; margin-top: 10px; color: #333; font-size: .5em;">
+  Novick & Pickett (2024)
+</div>
+
+<div style="position: absolute; top: 76%; right: 10%; width: 35%; text-align: right; margin-top: 10px; color: #333; font-size: .5em;">
+  Pickett et al. (2024)
+</div>
+
+<div class="footer">
+  Arizona State University
+</div>
 
 ---
 
-## Don't you want to make cool figures like this?
+<div class="footer">
+  Arizona State University
+</div>
 
-```{r, echo=FALSE, fig.align='center', out.height = "100%", out.width = "80%"}
-knitr::include_graphics("combined-plot.jpg")
+# The future is your oyster
+
+```{r, include=FALSE}
+library(dplyr)
+library(memer)
 ```
+```{r, echo=FALSE, fig.align='center', fig.cap="Created with the 'memer' package in R"}
+meme_get("WhatIfIToldYou") %>%
+  meme_text_top("WHAT IF I TOLD YOU", size = 30) %>%
+  meme_text_bottom("STATA CODE WILL CHANGE YOUR LIFE", size = 24)
 
-
+```
 ---
 <div class="footer">
   Arizona State University
 </div>
 
-# Let's walk through some code
+# Let's walk through some code!
 
 - Visit my Github repository: https://github.com/sBwatts/figure-making-stata
 
@@ -141,6 +167,24 @@ knitr::include_graphics("combined-plot.jpg")
 
 ---
 
+<div class="footer">
+  Arizona State University
+</div>
+
 # References
 
-Black Eyed Peas. (2009). Boom boom pow [Song]. On The E.N.D. (Energy Never Dies). Interscope Records.
+.small[Black Eyed Peas. (2009). Boom boom pow [Song]. On The E.N.D. (Energy Never Dies). Interscope Records.]
+
+.small[Haner, M., Sloan, M. M., Pickett, J. T., Cullen, F. T., & Jonson, C. L. (2024). Public support for safe-storage laws: White nationalism and politics as barriers to evidence-based gun policy. Journal of Criminal Justice, 94, 102244.]
+
+.small[Novick, R., & Pickett, J. T. (2024). Black Lives Matter, protest policing, and voter support for police reform in Portland, Oregon. Race and Justice, 14(3), 368-392.]
+
+.small[Pickett, J. T., Graham, A., Nix, J., & Cullen, F. T. (2024). Officer diversity may reduce Black Americans’ fear of the police. Criminology, 62(1), 35-63.]
+
+
+
+
+
+
+
+
