@@ -35,11 +35,11 @@ set scheme white_jet	// I personally love white_jet so that is what I will be us
 sysuse nlsw88, clear	// load in data
 
 *kdensity plots
+kdensity wage 
 kdensity wage if collgrad == 0
 kdensity wage if collgrad == 1, addplot(kdensity wage if collgrad == 0) 
 
-kdensity wage if collgrad == 1, addplot(kdensity wage if collgrad == 0) legend(order(1 "Wage, no college grad" 2 "Wage, college grad") pos(3) ring(0) region(fcolor(gs15))) title("Kernal Density Plot", pos(11) size(small)) note(, size(vsmall) span)
-
+kdensity wage if collgrad == 1, addplot(kdensity wage if collgrad == 0) title("Kernal Density Plot", pos(11) size(small)) note(, size(vsmall) span) legend(order(1 "Wage, non college grad" 2 "Wage, college grad") pos(3) ring(0) region(fcolor(gs15))) 
 
 * categorical bar graphs
 graph bar (percent), over(industry)		// graph bar chart (display percent), by industry var -- x-axis not clear in figure, lets fix that
@@ -56,13 +56,13 @@ graph bar (percent), over(industry, label(angle())) ///
 	
 	
 * violinplot
-violinplot wage ttl_exp tenure		// this is interesting but we can make it look better and there is a lot to do with this command suite
+violinplot wage ttl_exp	// this is interesting but we can make it look better and there is a lot to do with this command suite
 
 violinplot wage, over(collgrad)	mean(msymbol(X)) median(msymbol(d)) nobox // wage with college education as the sorting var, mean gets X symbol, median gets diamond symbol, no IQR box, no whiskers
 
 // we can also sort by another variable of interest
 
-violinplot wage, over(collgrad)	by(union) mean(msymbol(X)) median(msymbol(d)) nobox nowhiskers // wage with college education as the sorting var, by union status, mean gets X symbol, median gets diamond symbol, no IQR box, no whiskers
+violinplot wage, over(collgrad)	by(union) mean(msymbol(X)) median(msymbol(d)) nobox // wage with college education as the sorting var, by union status, mean gets X symbol, median gets diamond symbol, no IQR box, no whiskers
 
 // alright, lets go all out for an example
 
@@ -82,7 +82,7 @@ cibar wage, over(collgrad)	// looks very average lets make it better
 
 cibar wage, over(collgrad) ///
 	barcolor(blue%65 red%65) ciopts(lcol(black%75)) ///
-	/*barlab(on) blfmt(%4.1f) blsize(vsmall) blposition(swest) blcolor(white) */ ///
+	barlab(on) blfmt(%4.1f) blsize(vsmall) blposition(swest) blcolor(white) ///
 	graphopts(ytitle("Mean Hourly Wage") ylab(0(3)12) note("Note: 95% confidence intervals", size(vsmall) span))
 
 // now lets sort by two variables, race and education using the over command
@@ -108,7 +108,7 @@ esttab, replace ///
 reg wage ttl_exp collgrad c_city hours married age
 
 coefplot, ///
-	mcolor(black) msymbol(T) ciopts(lcol(black)) /// //marker options and CI options
+	mcolor(black) msymbol(T) ciopts(lcol(black)) /// // marker options and CI options
 	drop(_cons) scheme(white_jet) xline(0) xtitle("Coefficients") ///	// drop constant, set scheme, x-axis line, x-axis title
 	coeflabels(collgrad = "College graduate (ref = non college graduate)" married = "Married (ref = non married)" c_city = "Lives center city (ref = non center city)") ///	// renaming coefficient labels
 	title("OLS Regression on Hourly Wages", size(small) pos(11))	// plot title, size of title and position
@@ -137,7 +137,7 @@ margins, at(ttl_exp=(0(2)22)) level(95)		// calling the margins for our experien
 
 marginsplot, /// main marginsplot command
 scheme(white_jet) /// change graph scheme
-plotopts(lwidth(medthick) lcolor(black%70) msize(med) mcolor(black%75) mlcolor(black)) /// changes fit line and marker features
+plotopts(lwidth(medthick) lcolor(black%70) msize(med) mcolor(black%70) mlcolor(black)) /// changes fit line and marker features
 recastci(rarea) ciopts(fcolor(gs15) lcolor(gs15)) /// options for CI area opacity and line colors
 title("{bf}Experience and Hourly Wages", pos(12) size(small)) /// makes title, and spans it across graph (looks nicer)
 xsize(6.5) ysize(4.5) /// makes width of graph 6.5 inches, and height of graph 4.5 inches
@@ -182,10 +182,9 @@ tsline open close, lcolor(blue red) tline(11sept2001, lcol(black) lpat(dash) lwi
 
 graph save "$f/open-close-line.gph", replace
 
-graph combine "$f/open-close-line" "$f/scatter.gph" , col(1) note("Note: data from 'sysuse sp500' in Stata", size(vsmall))	// combine the graphs that you saved through your global, one column, add note
+graph combine "$f/open-close-line.gph" "$f/scatter.gph", col(1) note("Note: data from 'sysuse sp500' in Stata", size(vsmall))	// combine the graphs that you saved through your global, one column, add note
 
 graph export "$f/combined-plot.jpg", replace
 
-**# Live example walk through
 
 sysuse lifeexp
